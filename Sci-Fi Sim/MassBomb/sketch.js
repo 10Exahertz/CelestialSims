@@ -49,9 +49,7 @@ function setup(){
   text2.parent("sketch-holder")
   text2.html("3")
 
-  resetSketch()
-  var button = createButton("reset")
-  button.mousePressed(resetSketch)
+  
   var button = createButton("Add Venus")
   button.mousePressed(addvenus)
   var button = createButton("Add Mercury")
@@ -64,10 +62,7 @@ function addmars(){orbiters.push(new Orbiter(createVector(width/2,-457.2+height/
 function addvenus(){orbiters.push(new Orbiter(createVector(width/2,-216.9+height/2),createVector(-15,0),createVector(0,0),0.85*massearth,2, color(255,165,0)))}
 function addmercury(){orbiters.push(new Orbiter(createVector(width/2,-117+height/2),createVector(-18,0),createVector(0,0),1,1, color(0,128,255)))}
 
-function resetSketch(){
 
-
-}
 
 
 
