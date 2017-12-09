@@ -64,10 +64,6 @@ function addmercury(){orbiters.push(new Orbiter(createVector(width/2,-117+height
 
 
 
-
-
-
-
   //createCanvas(4000, 4000);
 v1 = 13;
 massRatio =33300;
