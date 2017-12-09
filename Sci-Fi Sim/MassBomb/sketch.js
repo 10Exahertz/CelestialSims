@@ -9,7 +9,70 @@ var SolarSystem;
 
 function setup(){
   //frameRate(30);
-  createCanvas(windowWidth, windowHeight);
+
+  canvas=createCanvas(1000, 1000);
+  canvas.parent("sketch-holder")
+
+  text1=createP();
+  text1.position(780,10)
+  text1.parent("sketch-holder")
+  text1.html("Click to add a solar mass")
+  text1=createP();
+  text1.position(780,30)
+  text1.parent("sketch-holder")
+  text1.html("Click 1 when timer is at 1.97s")
+  text1=createP();
+  text1.position(780,50)
+  text1.parent("sketch-holder")
+  text1.html("Click 1 when timer is at 2.6s")
+  text1=createP();
+  text1.position(780,70)
+  text1.parent("sketch-holder")
+  text1.html("Click 2 when timer is at 1.3s")
+  text1=createP();
+  text1.position(780,90)
+  text1.parent("sketch-holder")
+  text1.html("Click 3 when timer is at 1.3s")
+
+
+  text2=createP();
+  text2.position(500,466)
+  text2.parent("sketch-holder")
+  text2.html("1")
+
+  text2=createP();
+  text2.position(30,466)
+  text2.parent("sketch-holder")
+  text2.html("2")
+  text2=createP();
+  text2.position(240,466)
+  text2.parent("sketch-holder")
+  text2.html("3")
+
+  resetSketch()
+  var button = createButton("reset")
+  button.mousePressed(resetSketch)
+  var button = createButton("Add Venus")
+  button.mousePressed(addvenus)
+  var button = createButton("Add Mercury")
+  button.mousePressed(addmercury)
+  var button = createButton("Add Mars")
+  button.mousePressed(addmars)
+
+
+function addmars(){orbiters.push(new Orbiter(createVector(width/2,-457.2+height/2),createVector(-10.52,0),createVector(0,0),massearth,2, color(255,0,0)));}
+function addvenus(){orbiters.push(new Orbiter(createVector(width/2,-216.9+height/2),createVector(-15,0),createVector(0,0),0.85*massearth,2, color(255,165,0)))}
+function addmercury(){orbiters.push(new Orbiter(createVector(width/2,-117+height/2),createVector(-18,0),createVector(0,0),1,1, color(0,128,255)))}
+
+function resetSketch(){
+
+
+}
+
+
+
+
+
   //createCanvas(4000, 4000);
 v1 = 13;
 massRatio =33300;
@@ -42,7 +105,10 @@ sat = orbiters.push(new Orbiter(createVector(width/2,-300+r+height/2),createVect
 
 
 function draw(){
-background(255);
+background(220,220,220);
+
+
+
 
 //the following solves the physics
   for (var k = 0; k < 4; k++) { // increase the greater than value to increase simulation step rate
@@ -52,7 +118,7 @@ background(255);
   for (i=0;i<orbiters.length;i++){
     orbiters[i].display();
   }
-
+text(frameCount/100, 20, 20);
   COM();
 
   for (var i = Trails.length-1; i >= 0; i--) {
@@ -84,7 +150,7 @@ function COM(){
   fill(0)
   stroke(0)
   line(com.x-5,com.y,com.x+5,com.y,)
-  line(com.x,com.y-5,com.x,com.y+5,)
+  line(com.x,com.y-5,com.x,com.y+5,)//this is what makes the cross hairs, or use image funtion to move it background
   pop();
 }
 
@@ -107,12 +173,17 @@ function keyTyped(){
   }
 }
 
-//vblm= Math.sqrt((0.0188*nsun*massRatio*massearth)/(Math.sqrt((MouseX + MouseY)
 
-function mouseClicked() {
 
-  orbiters.push(new Orbiter(createVector(mouseX,mouseY),createVector(-v1/massRatio,0),createVector(0,0),nsun*massearth*massRatio,2, color(0,0,0)));
+function mousePressed() {
+  // Check if mouse is inside the circle
+  var d = dist(mouseX, mouseY, width/2, height/2);
+  if (d < 550) {
+    // Pick new random color values
+    orbiters.push(new Orbiter(createVector(mouseX,mouseY),createVector(-v1/massRatio,0),createVector(0,0),nsun*massearth*massRatio,2, color(0,0,0)));
 
-  // prevent default
-  return false;
+  }
 }
+
+
+//orbiters.push(new Orbiter(createVector(mouseX,mouseY),createVector(-v1/massRatio,0),createVector(0,0),nsun*massearth*massRatio,2, color(0,0,0)));
