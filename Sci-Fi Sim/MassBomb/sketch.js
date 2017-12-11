@@ -32,7 +32,7 @@ function setup(){
   text1=createP();
   text1.position(780,90)
   text1.parent("sketch-holder")
-  text1.html("Click 3 when timer is at 1.3s")
+  text1.html("Click 3 when timer is at 0.6s")
 
 
   text2=createP();
